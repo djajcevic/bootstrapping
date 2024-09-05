@@ -1,7 +1,7 @@
-[submodule "bootstrapping/spring-demo"]
+[submodule "spring-demo"]
 	path = react-demo
-	url = https://github.com/djajcevic/react-demo.git
+	url = del
 
-[submodule "bootstrapping/react-demo"]
+[submodule "react-demo"]
 	path = react-demo
 	url = https://github.com/djajcevic/react-demo.git
