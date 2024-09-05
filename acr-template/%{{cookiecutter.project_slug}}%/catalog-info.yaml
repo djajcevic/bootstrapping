@@ -1,0 +1,14 @@
+#$schema: https://json.schemastore.org/catalog-info.json
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: %{{cookiecutter.project_slug}}%
+  tags:
+    - java
+spec:
+  type: service
+  lifecycle: development
+  owner: demo-team
+  system: demo
+  dependsOn:
+    - component:default/%{{cookiecutter.project_slug}}%

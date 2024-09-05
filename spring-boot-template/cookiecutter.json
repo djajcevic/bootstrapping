@@ -1,0 +1,10 @@
+{
+  "_jinja2_env_vars": {
+    "variable_start_string": "%{{",
+    "variable_end_string": "}}%"
+  },
+  "app_name": "SpringDemo",
+  "package": "com.example",
+  "project_slug": "spring-demo",
+  "acr_url": "some url"
+}

@@ -1,0 +1,27 @@
+services:
+  backend:
+    image: djajcevic/spring-demo
+    ports:
+      - 8080:8080
+  frontend:
+    build:
+      context: react-demo
+    ports:
+      - 8081:8080
+#  frontend:
+#    build:
+#      context: react-demo
+#      dockerfile: Dockerfile.dev
+#    command: npm start
+#    working_dir: /app
+#    develop:
+#      watch:
+#        - action: sync
+#          path: ./react-demo
+#          target: /
+#          ignore:
+#            - node_modules/
+#        - action: rebuild
+#          path: package.json
+#    ports:
+#      - 3000:3000
