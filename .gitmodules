@@ -1,5 +1,5 @@
 [submodule "spring-demo"]
-	path = react-demo
+	path = spring-demo
 	url = https://github.com/djajcevic/spring-demo.git
 
 [submodule "react-demo"]
