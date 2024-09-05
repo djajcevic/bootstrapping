@@ -1,6 +1,6 @@
 [submodule "spring-demo"]
 	path = react-demo
-	url = del
+	url = https://github.com/djajcevic/spring-demo.git
 
 [submodule "react-demo"]
 	path = react-demo
