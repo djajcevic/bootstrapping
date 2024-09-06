@@ -1,7 +1,9 @@
 [submodule "spring-demo"]
 	path = spring-demo
 	url = https://github.com/djajcevic/spring-demo.git
+	branch = main
 
 [submodule "react-demo"]
 	path = react-demo
 	url = https://github.com/djajcevic/react-demo.git
+    branch = main
