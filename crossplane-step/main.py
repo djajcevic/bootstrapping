@@ -16,14 +16,14 @@ if __name__ == '__main__':
     # Extract environment variables set by the CR
     project_name = os.getenv("PROJECT_NAME")
     project_slug = os.getenv("PROJECT_SLUG")
-    template_url = os.getenv("TEMPLATE_URL")
+    template_name = os.getenv("TEMPLATE_NAME")
     git_username = os.getenv("GIT_USERNAME")
     git_password = os.getenv("GIT_PASSWORD")
     repo_url = os.getenv("REPO_URL")
     commit_message = os.getenv("COMMIT_MESSAGE", "Initial commit")
 
     print("Generate project")
-    project_path = cookiecutter(template_url, no_input=True, directory="acr-template", extra_context={
+    project_path = cookiecutter("https://github.com/djajcevic/bootstrapping.git", no_input=True, directory=template_name, extra_context={
         'project_slug': project_slug,
         'app_name': slug_to_pascal_case(project_slug)
     })
