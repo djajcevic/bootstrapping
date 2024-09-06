@@ -2,13 +2,12 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: %{{cookiecutter.project_slug}}%
+  name: %{{cookiecutter.project_slug}}%-acr
   tags:
-    - java
+    - helm
 spec:
-  type: service
+  type: config-repo
   lifecycle: development
   owner: demo-team
-  system: demo
   dependsOn:
     - component:default/%{{cookiecutter.project_slug}}%
