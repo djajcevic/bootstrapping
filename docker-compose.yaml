@@ -1,11 +1,10 @@
 services:
   backend:
-    image: djajcevic/spring-demo
+    image: djajcevic/spring-demo:latest
     ports:
       - 8080:8080
   frontend:
-    build:
-      context: react-demo
+    image: djajcevic/react-demo:latest
     ports:
       - 8081:8080
 #  frontend:
@@ -13,6 +12,8 @@ services:
 #      context: react-demo
 #      dockerfile: Dockerfile.dev
 #    command: npm start
+#    env_file:
+#      - ./react-demo/.env
 #    working_dir: /app
 #    develop:
 #      watch:
