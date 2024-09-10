@@ -19,13 +19,15 @@ if __name__ == '__main__':
     template_name = os.getenv("TEMPLATE_NAME")
     git_username = os.getenv("GIT_USERNAME")
     git_password = os.getenv("GIT_PASSWORD")
+    bff_service_name_and_port = os.getenv("BFF_SERVICE_NAME_AND_PORT")
     repo_url = os.getenv("REPO_URL")
     commit_message = os.getenv("COMMIT_MESSAGE", "Initial commit")
 
     print("Generate project")
     project_path = cookiecutter("https://github.com/djajcevic/bootstrapping", no_input=True, directory=template_name, extra_context={
         'project_slug': project_slug,
-        'app_name': slug_to_pascal_case(project_slug)
+        'app_name': slug_to_pascal_case(project_slug),
+        'bff_service_name_and_port': bff_service_name_and_port
     })
 
     # Initialize Git and push
