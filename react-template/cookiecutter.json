@@ -5,5 +5,6 @@
   },
   "app_name": "SpringDemo",
   "package": "com.example",
-  "project_slug": "spring-demo"
+  "project_slug": "spring-demo",
+  "bff_service_name_and_port": "spring-demo-bff:8080"
 }
