@@ -11,7 +11,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const response = await fetch('/actuator/health');
+    const response = await fetch(process.env.REACT_APP_BFF_URL + "/actuator/health");
     const body = await response.json();
     this.setState({backend: body});
   }
@@ -28,11 +28,14 @@ class App extends Component {
                 <span style={{fontWeight: "bold"}}>status: {backend?.status}</span>
                 <hr/>
               </div>
-              {Object.keys(backend?.components)?.map((key, i) => (
-                  <div key={i+1} style={{textAlign: "left", display: "table-row"}}>
-                    <div style={{fontWeight: "bold", display: "table-cell"}}>{key}: </div><div style={{textAlign: "right", display: "table-cell"}}>{backend?.components?.[key]?.status}</div>
-                  </div>
-              ))}
+              {
+                  backend?.components && Object.keys(backend?.components)?.map((key, i) => (
+                      <div key={i+1} style={{textAlign: "left", display: "table-row"}}>
+                        <div style={{fontWeight: "bold", display: "table-cell"}}>{key}:</div>
+                        <div style={{textAlign: "right", display: "table-cell"}}>{backend?.components?.[key]?.status}</div>
+                      </div>
+                  ))
+              }
             </div>
           </header>
         </div>

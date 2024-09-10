@@ -5,8 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: djajcevic/%{{cookiecutter.project_slug}}%
-  pullPolicy: IfNotPresent
+  fe: djajcevic/%{{cookiecutter.project_slug}}%-frontend
+  bff: djajcevic/%{{cookiecutter.project_slug}}%
+  # IfNotPresent is recommended, but for demo purposes we will use Always
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
