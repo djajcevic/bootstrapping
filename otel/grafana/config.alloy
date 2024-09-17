@@ -1,0 +1,56 @@
+prometheus.remote_write "local" {
+  endpoint {
+    url = "http://prometheus:9090/api/v1/write"
+  }
+}
+
+otelcol.exporter.otlp "local" {
+  client {
+    endpoint = "tempo:4317"
+    tls {
+        insecure_skip_verify = true
+        insecure = true
+    }
+  }
+}
+
+otelcol.exporter.prometheus "to_prometheus" {
+  forward_to = [
+    prometheus.remote_write.local.receiver,
+  ]
+}
+
+otelcol.receiver.otlp "default" {
+  grpc {
+     endpoint = "0.0.0.0:9317"
+  }
+  http {}
+  output {
+    metrics = [otelcol.exporter.prometheus.to_prometheus.input]
+    logs = []
+    traces = [otelcol.connector.servicegraph.local.input, otelcol.exporter.otlp.local.input]
+  }
+}
+
+otelcol.connector.servicegraph "local" {
+  dimensions = ["http.method", "http.target"]
+  output {
+    metrics = [otelcol.exporter.otlp.local.input]
+  }
+}
+
+prometheus.scrape "static" {
+  forward_to = [
+    prometheus.remote_write.local.receiver,
+  ]
+  targets = [
+    {
+      "__address__" = "prometheus:9090",
+    },
+  ]
+}
+
+logging {
+  level  = "info"
+  format = "logfmt"
+}
