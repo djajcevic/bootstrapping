@@ -3,6 +3,8 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: %{{cookiecutter.project_slug}}%-acr
+  annotations:
+    argocd/app-name: %{{cookiecutter.project_slug}}%
   tags:
     - helm
 spec:
