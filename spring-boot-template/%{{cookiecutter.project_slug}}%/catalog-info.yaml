@@ -6,7 +6,7 @@ metadata:
   annotations:
     github.com/project-slug: djajcevic/%{{cookiecutter.project_slug}}%-acs
     backstage.io/environment: dev
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=%{{cookiecutter.project_slug}}%'
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=%{{cookiecutter.project_slug}}%-bff'
   tags:
     - java
 spec:
