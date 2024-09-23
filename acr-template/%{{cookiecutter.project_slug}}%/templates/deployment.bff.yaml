@@ -58,6 +58,20 @@ spec:
                 secretKeyRef:
                   key: password
                   name: cool-app-db
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://observability-alloy.observability.svc.cluster.local:9317"
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: "grpc"
+            - name: OTEL_SERVICE_NAME
+              value: "%{{cookiecutter.project_slug}}%"
+            - name: OTEL_JAVAAGENT_DEBUG
+              value: "false"
+            - name: OTEL_TRACES_EXPORTER
+              value: "otlp"
+            - name: OTEL_SPAN_EXPORTER
+              value: "otlp"
+            - name: OTEL_METRICS_EXPORTER
+              value: "otlp"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
