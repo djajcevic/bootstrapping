@@ -35,6 +35,29 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.bff }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "dev"
+            - name: DATABASE_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  key: endpoint
+                  name: cool-app-db
+            - name: DATABASE_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: port
+                  name: cool-app-db
+            - name: DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: cool-app-db
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: cool-app-db
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
