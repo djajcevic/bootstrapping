@@ -9,52 +9,22 @@ services:
     volumes:
       - tempo-data:/var/tempo
 
-#  dotnet:
-#    image: myapp
-#    entrypoint: "./out/MyApi --urls http://*:5000"
-#    env_file:
-#      - otel-dotnet.env
-#    environment:
-#      OTEL_LOG_LEVEL: debug
-#      OTEL_SERVICE_NAME: "myapp-dotnet"
-#      OTEL_EXPORTER_OTLP_ENDPOINT: "http://localhost:9317"
-#      OTEL_DOTNET_AUTO_TRACES_ADDITIONAL_SOURCES: "MyApp"
-#      OTEL_DOTNET_AUTO_METRICS_ADDITIONAL_SOURCES: "MyApp"
-#      OTEL_EXPORTER_OTLP_PROTOCOL: grpc
-#      OTEL_TRACES_EXPORTER: otlp
-#      OTEL_SPAN_EXPORTER: otlp
-#      OTEL_METRICS_EXPORTER: otlp
-#    network_mode: host
+  backend:
+    image: djajcevic/cool-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2:mem:myh2db
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://alloy:9317
+      OTEL_EXPORTER_OTLP_PROTOCOL: grpc
+      OTEL_SERVICE_NAME: backend
+      OTEL_JAVAAGENT_DEBUG: false
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_SPAN_EXPORTER: otlp
+      OTEL_METRICS_EXPORTER: otlp
+    networks:
+      - observability
 
-#  backend:
-#    image: spring-demo
-#    ports:
-#      - 8080:8080
-#    environment:
-#      OTEL_EXPORTER_OTLP_ENDPOINT: http://localhost:9317
-#      OTEL_EXPORTER_OTLP_PROTOCOL: grpc
-##      OTEL_EXPORTER_OTLP_LOGS_ENDPOINT: http://otel-collector:4318/v1/logs
-##      OTEL_EXPORTER_OTLP_METRICS_ENDPOINT: http://prometheus:9090/api/v1/write
-##      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://tempo:4317
-#      OTEL_SERVICE_NAME: backend
-#      OTEL_JAVAAGENT_DEBUG: false
-#      OTEL_TRACES_EXPORTER: otlp
-#      OTEL_SPAN_EXPORTER: otlp
-#      OTEL_METRICS_EXPORTER: otlp
-#    network_mode: host
-#    networks:
-#      - app
-
-#
-#  k6-tracing:
-#    image: ghcr.io/grafana/xk6-client-tracing:v0.0.5
-#    environment:
-#      - ENDPOINT=otel-collector:4317
-#    restart: always
-##    depends_on:
-##      - otel-collector
-#    networks:
-#      - observability
   prometheus:
     image: prom/prometheus:latest
     command:
@@ -73,7 +43,7 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
@@ -105,16 +75,6 @@ services:
     networks:
       - observability
 
-#  otel-collector:
-#    image: otel/opentelemetry-collector:latest
-#    command: [ "--config=/etc/otel-collector.yaml", "--feature-gates=-component.UseLocalHostAsDefaultHost" ]
-#    volumes:
-#      - ./otel/otel-collector.yaml:/etc/otel-collector.yaml
-#    ports:
-#      - "4317"
-#      - "4318"
-#    networks:
-#      - observability
   alloy:
     image: grafana/alloy:latest
     command:
@@ -125,34 +85,13 @@ services:
     volumes:
       - ./otel/grafana/config.alloy:/etc/alloy/config.alloy
     ports:
-      - "12345:4317"
+      - "12345:4317" # otlp
       - "9317:9317"
+      - "12346:12346" # faro
     networks:
       - observability
       - app
-#  frontend:
-#    image: djajcevic/cool-app-frontend:latest
-#    ports:
-#      - 8081:8080
-#  frontend:
-#    build:
-#      context: react-demo
-#      dockerfile: Dockerfile.dev
-#    command: npm start
-#    env_file:
-#      - ./react-demo/.env
-#    working_dir: /app
-#    develop:
-#      watch:
-#        - action: sync
-#          path: ./react-demo
-#          target: /
-#          ignore:
-#            - node_modules/
-#        - action: rebuild
-#          path: package.json
-#    ports:
-#      - 3000:3000
+
 volumes:
   grafana-data:
   tempo-data:

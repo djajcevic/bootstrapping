@@ -33,7 +33,7 @@ otelcol.receiver.otlp "default" {
 }
 
 otelcol.connector.servicegraph "local" {
-  dimensions = ["http.method", "http.target"]
+  dimensions = ["http.method", "http.target", "db.system", "messaging.system"]
   output {
     metrics = [otelcol.exporter.otlp.local.input]
   }
@@ -48,6 +48,27 @@ prometheus.scrape "static" {
       "__address__" = "prometheus:9090",
     },
   ]
+}
+
+faro.receiver "integrations_app_agent_receiver" {
+    server {
+        listen_address           = "0.0.0.0"
+        listen_port              = 12346
+        cors_allowed_origins     = ["*"]
+        api_key                  = "my_super_app_key"
+        max_allowed_payload_size = "10MiB"
+
+        rate_limiting {
+            rate = 100
+        }
+    }
+
+    sourcemaps { }
+
+    output {
+        logs   = []
+        traces = [otelcol.exporter.otlp.local.input]
+    }
 }
 
 logging {
