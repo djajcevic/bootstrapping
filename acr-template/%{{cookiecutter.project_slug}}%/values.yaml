@@ -54,13 +54,13 @@ ingress:
     # kubernetes.io/ingress.class: nginx
   # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: %{{cookiecutter.project_slug}}%.idp.dhl.com
+    - host: %{{cookiecutter.project_slug}}%.apps.idp.dhl.com
       paths:
         - path: /
           pathType: Prefix
   tls:
     - hosts:
-        - %{{cookiecutter.project_slug}}%.idp.dhl.com
+        - %{{cookiecutter.project_slug}}%.apps.idp.dhl.com
       secretName: keyvault-%{{cookiecutter.project_slug}}%
 
 resources: {}
