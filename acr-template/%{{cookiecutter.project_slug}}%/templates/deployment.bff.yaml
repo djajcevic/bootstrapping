@@ -42,22 +42,22 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: endpoint
-                  name: cool-app-db
+                  name: {{ .Values.dbSecretName }}
             - name: DATABASE_PORT
               valueFrom:
                 secretKeyRef:
                   key: port
-                  name: cool-app-db
+                  name: {{ .Values.dbSecretName }}
             - name: DATABASE_USERNAME
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: cool-app-db
+                  name: {{ .Values.dbSecretName }}
             - name: DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: cool-app-db
+                  name: {{ .Values.dbSecretName }}
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://observability-alloy.observability.svc.cluster.local:9317"
             - name: OTEL_EXPORTER_OTLP_PROTOCOL
