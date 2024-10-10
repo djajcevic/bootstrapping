@@ -59,7 +59,7 @@ spec:
                   key: password
                   name: {{ .Values.dbSecretName }}
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: "http://observability-alloy.observability.svc.cluster.local:9317"
+              value: "http://grafana-alloy.cp.idp.dhl:9317"
             - name: OTEL_EXPORTER_OTLP_PROTOCOL
               value: "grpc"
             - name: OTEL_SERVICE_NAME
@@ -72,6 +72,8 @@ spec:
               value: "otlp"
             - name: OTEL_METRICS_EXPORTER
               value: "otlp"
+            - name: OTEL_EXPORTER_OTLP_INSECURE
+              value: "true"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
