@@ -9,10 +9,27 @@ metadata:
     'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=%{{cookiecutter.project_slug}}%-bff'
   tags:
     - java
+  links:
+    - url: %{{cookiecutter.project_slug}}%.apps.idp.dhl.com/api
+      title: API
+      icon: star
 spec:
   type: service
   lifecycle: development
-  owner: demo-team
-  system: demo
+  owner: %{{cookiecutter.project_slug}}%
+  system: %{{cookiecutter.project_slug}}%
   dependsOn:
     - component:default/%{{cookiecutter.project_slug}}%-acr
+  providesApis:
+    - %{{cookiecutter.project_slug}}%
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: %{{cookiecutter.project_slug}}%
+spec:
+  type: rest
+  lifecycle: deprecated
+  owner: %{{cookiecutter.project_slug}}%
+  definition:
+    $text: %{{cookiecutter.project_slug}}%.apps.idp.dhl.com/api-docs
