@@ -11,7 +11,7 @@ metadata:
   tags:
     - java
   links:
-    - url: %{{cookiecutter.project_slug}}%.apps.idp.dhl.com/api
+    - url: https://%{{cookiecutter.project_slug}}%.apps.idp.dhl.com/api
       title: API
       icon: star
 spec:
