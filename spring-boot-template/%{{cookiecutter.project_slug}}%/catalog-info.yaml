@@ -4,7 +4,7 @@ kind: Component
 metadata:
   name: %{{cookiecutter.project_slug}}%
   annotations:
-    github.com/project-slug: djajcevic/%{{cookiecutter.project_slug}}%-acs
+    github.com/project-slug: djajcevic-idp/%{{cookiecutter.project_slug}}%-acs
     backstage.io/environment: dev
     'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=%{{cookiecutter.project_slug}}%-bff'
     argocd/app-name: %{{cookiecutter.project_slug}}%
