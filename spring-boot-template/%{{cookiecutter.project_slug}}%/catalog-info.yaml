@@ -17,8 +17,8 @@ metadata:
 spec:
   type: service
   lifecycle: development
-  owner: %{{cookiecutter.project_slug}}%
-  system: %{{cookiecutter.project_slug}}%
+  owner: demo-team
+  system: demo
   dependsOn:
     - component:default/%{{cookiecutter.project_slug}}%-acr
   providesApis:
@@ -31,6 +31,6 @@ metadata:
 spec:
   type: rest
   lifecycle: deprecated
-  owner: %{{cookiecutter.project_slug}}%
+  owner: demo-team
   definition:
     $text: %{{cookiecutter.project_slug}}%.apps.idp.dhl.com/api-docs
