@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>%{{cookiecutter.project_slug}}%</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>%{{cookiecutter.app_name}}%</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

@@ -23,7 +23,7 @@ jobs:
           java-version-file: .java-version
 
       - name: Build and Test with Maven
-        run: chmod +x ./mvnw && ./mvnw clean package -P ci -DfinalName=app
+        run: chmod +x ./mvnw && ./mvnw -P ci -DfinalName=app package org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
       - name: Docker Login
         uses: docker/login-action@v3.3.0
