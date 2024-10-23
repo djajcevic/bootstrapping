@@ -23,6 +23,10 @@ jobs:
           java-version-file: .java-version
 
       - name: Build and Test with Maven
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # analysis token associated to your project
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST }}
+          SONAR_ROOT_CERT: ${{ secrets.SONAR_ROOT_CERT }}
         run: chmod +x ./mvnw && ./mvnw -P ci -DfinalName=app package org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
       - name: Docker Login
