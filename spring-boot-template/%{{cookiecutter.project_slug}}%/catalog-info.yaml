@@ -34,4 +34,4 @@ spec:
   lifecycle: deprecated
   owner: demo-team
   definition:
-    $text: %{{cookiecutter.project_slug}}%.apps.idp.dhl.com/api-docs
+    $text: https://%{{cookiecutter.project_slug}}%.apps.idp.dhl.com/api/api-docs
