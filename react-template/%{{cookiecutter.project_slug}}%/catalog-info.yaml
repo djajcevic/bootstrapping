@@ -7,7 +7,7 @@ metadata:
     github.com/project-slug: djajcevic-idp/%{{cookiecutter.project_slug}}%-acs
     backstage.io/environment: dev
     'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=%{{cookiecutter.project_slug}}%'
-    argocd/app-name: %{{cookiecutter.project_slug}}%
+    argocd/app-name: %{{cookiecutter.project_slug | replace("-frontend", "")}}%
     sonarqube.org/project-key: default/%{{cookiecutter.project_slug}}%
   tags:
     - react
