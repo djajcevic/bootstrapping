@@ -59,7 +59,7 @@ spec:
                   key: password
                   name: {{ .Values.dbSecretName }}
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: "http://grafana-alloy.cp.idp.dhl:9317"
+              value: "http://grafana-alloy.idp.dhl.com:9317"
             - name: OTEL_EXPORTER_OTLP_PROTOCOL
               value: "grpc"
             - name: OTEL_SERVICE_NAME
