@@ -12,7 +12,7 @@ metadata:
   tags:
     - java
   links:
-    - url: https://%{{cookiecutter.project_slug}}%.apps.idp.dhl.com/api
+    - url: https://%{{cookiecutter.project_slug | replace("-bff", "")}}%.apps.idp.dhl.com/api
       title: API
       icon: star
 spec:
@@ -21,7 +21,7 @@ spec:
   owner: demo-team
   system: demo
   dependsOn:
-    - component:default/%{{cookiecutter.project_slug}}%-acr
+    - component:default/%{{cookiecutter.project_slug | replace("-bff", "-acr")}}%
   providesApis:
     - %{{cookiecutter.project_slug}}%
 ---
@@ -34,4 +34,4 @@ spec:
   lifecycle: deprecated
   owner: demo-team
   definition:
-    $text: https://%{{cookiecutter.project_slug}}%.apps.idp.dhl.com/api/api-docs
+    $text: https://%{{cookiecutter.project_slug | replace("-bff", "")}}%.apps.idp.dhl.com/api/api-docs

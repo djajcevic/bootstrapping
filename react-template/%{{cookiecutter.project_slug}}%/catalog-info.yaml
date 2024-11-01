@@ -13,7 +13,7 @@ metadata:
     - react
     - js
   links:
-    - url: https://%{{cookiecutter.project_slug}}%.apps.idp.dhl.com
+    - url: https://%{{cookiecutter.project_slug | replace("-frontend", "")}}%.apps.idp.dhl.com
       title: Website
       icon: star
 spec:
