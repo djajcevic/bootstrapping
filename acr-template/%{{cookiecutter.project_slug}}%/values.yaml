@@ -53,9 +53,6 @@ ingress:
   enabled: true
   className: webapprouting.kubernetes.azure.com
   annotations:
-    kubernetes.azure.com/tls-cert-keyvault-uri: https://key2vault.vault.azure.net/certificates/idppoc
-    # kubernetes.io/ingress.class: nginx
-  # kubernetes.io/tls-acme: "true"
   hosts:
     - host: %{{cookiecutter.project_slug}}%.apps.idp.dhl.com
       paths:
