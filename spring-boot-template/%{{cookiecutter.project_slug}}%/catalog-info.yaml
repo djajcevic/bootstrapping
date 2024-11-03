@@ -22,6 +22,7 @@ spec:
   system: demo
   dependsOn:
     - component:default/%{{cookiecutter.project_slug | replace("-bff", "-acr")}}%
+    - resource:default/%{{cookiecutter.project_slug | replace("-bff", "")}}%
   providesApis:
     - %{{cookiecutter.project_slug}}%
 ---
@@ -35,3 +36,13 @@ spec:
   owner: demo-team
   definition:
     $text: https://%{{cookiecutter.project_slug | replace("-bff", "")}}%.apps.idp.dhl.com/api/api-docs
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: %{{cookiecutter.project_slug | replace("-bff", "")}}%
+spec:
+  type: database
+  lifecycle: deprecated
+  owner: demo-team
+  system: demo
