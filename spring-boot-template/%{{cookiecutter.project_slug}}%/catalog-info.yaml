@@ -4,9 +4,9 @@ kind: Component
 metadata:
   name: %{{cookiecutter.project_slug}}%
   annotations:
-    github.com/project-slug: djajcevic-idp/%{{cookiecutter.project_slug}}%-acs
+    github.com/project-slug: djajcevic-idp/%{{cookiecutter.project_slug | replace("-bff", "")}}%-acs
     backstage.io/environment: dev
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=%{{cookiecutter.project_slug}}%-bff'
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=%{{cookiecutter.project_slug}}%'
     argocd/app-name: %{{cookiecutter.project_slug | replace("-bff", "")}}%
     sonarqube.org/project-key: default/%{{cookiecutter.package}}%:%{{cookiecutter.project_slug}}%
   tags:
@@ -30,7 +30,7 @@ kind: API
 metadata:
   name: %{{cookiecutter.project_slug}}%
 spec:
-  type: rest
+  type: openapi
   lifecycle: deprecated
   owner: demo-team
   definition:
