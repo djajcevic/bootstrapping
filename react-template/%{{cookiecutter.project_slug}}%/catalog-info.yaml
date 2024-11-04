@@ -9,6 +9,8 @@ metadata:
     'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/name=%{{cookiecutter.project_slug}}%'
     argocd/app-name: %{{cookiecutter.project_slug | replace("-frontend", "")}}%
     sonarqube.org/project-key: default/%{{cookiecutter.project_slug}}%
+    backstage.io/techdocs-ref: 'dir:.'
+    demo.backstage.io/techdocs-builder: 'local'
   tags:
     - react
     - js

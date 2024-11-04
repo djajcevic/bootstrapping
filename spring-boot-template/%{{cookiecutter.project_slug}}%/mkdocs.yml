@@ -1,0 +1,8 @@
+site_name: %{{cookiecutter.project_slug}}%
+
+nav:
+  - About: index.md
+
+plugins:
+  - search
+  - techdocs-core
